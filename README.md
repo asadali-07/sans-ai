@@ -1,70 +1,250 @@
-# 🚀 Sans-Ai  
+# 🚀 Sans-Ai
 
-Sans-Ai is a **Next.js-based AI-powered platform** designed to help users with career growth. It provides industry insights, a resume builder, cover letter writing assistance, and interview preparation tools. The platform is deployed on **Vercel** and leverages modern technologies to enhance user experience.
+**Sans-Ai** is a comprehensive AI-powered career development platform built with Next.js. It empowers users to accelerate their career growth through intelligent resume building, personalized cover letter generation, interview preparation, and industry insights.
 
 ---
 
-## 🌟 Features
+## ✨ Features
 
-- 🔐 **User Authentication**: Secure login and signup using **Clerk**.
-- 📈 **Industry Insights**: Weekly updated insights powered by **Inngest**.
-- 📄 **Resume Builder**: AI-powered resume generation.
-- ✉️ **Cover Letter Writing**: Custom AI-generated cover letters.
-- 🎤 **Interview Preparation**: Practice questions and AI-driven feedback.
-- 🎨 **Modern UI**: Designed with **ShadCN UI** for a sleek interface.
+### 🔐 **Authentication & User Management**
+- Secure authentication powered by **Clerk**
+- User profiles with industry preferences and experience tracking
+- Personalized dashboard for career progress
+
+### 📄 **AI Resume Builder**
+- Intelligent resume generation using **Google Gemini API**
+- Multiple resume templates and formats
+- Real-time preview and editing capabilities
+- PDF export functionality with `html2pdf.js`
+
+### ✉️ **Smart Cover Letter Generator**
+- AI-powered custom cover letters for specific job applications
+- Template library with industry-specific formats
+- Personalization based on user profile and job requirements
+
+### 🎯 **Interview Preparation Suite**
+- Mock interview sessions with AI-generated questions
+- Performance analytics and improvement suggestions
+- Industry-specific interview scenarios
+- Progress tracking with interactive charts
+
+### 📊 **Industry Insights & Analytics**
+- Weekly automated industry insights via **Inngest**
+- Career trends and market analysis
+- Personalized recommendations based on user's industry
+- Performance metrics and goal tracking
+
+### 🎨 **Modern User Experience**
+- Responsive design with **Tailwind CSS**
+- Dark/light theme support with **next-themes**
+- Accessible UI components from **ShadCN UI**
+- Smooth animations and transitions
 
 ---
 
 ## 🛠️ Tech Stack
 
-- ⚛️ **Next.js** - React framework for full-stack development.
-- 🔷 **JavaScript** - Type-safe development.
-- 🤖 **AI-Powered Assistance**: Leverages **Google Gemini API** for intelligent content generation.
-- 🔄 **Inngest** - Automates weekly industry insights updates.
-- 🔑 **Clerk** - Authentication and user management.
-- 🎨 **ShadCN UI** - Modern and accessible UI components.
-- 🎭 **Tailwind CSS** - Utility-first CSS framework for styling.
-- 🚀 **Vercel** - Deployment and hosting.
-- 📦 **Various NPM Packages** - For additional functionality.
+### **Frontend**
+- **Next.js 15** - React framework with App Router
+- **React 19** - Latest React features
+- **Tailwind CSS** - Utility-first CSS framework
+- **ShadCN UI** - Modern accessible components
+- **Lucide React** - Beautiful icons
+- **Recharts** - Data visualization
+
+### **Backend & Database**
+- **Prisma** - Type-safe database ORM
+- **PostgreSQL** - Primary database
+- **Inngest** - Background job processing
+- **Clerk** - Authentication and user management
+
+### **AI & Integrations**
+- **Google Gemini API** - AI content generation
+- **React Hook Form** - Form management
+- **Zod** - Schema validation
+- **React Markdown** - Markdown rendering
+
+### **Development Tools**
+- **ESLint** - Code linting
+- **PostCSS** - CSS processing
+- **Turbopack** - Fast development bundler
 
 ---
 
-## 📦 Installation
+## 🚀 Getting Started
 
-Clone the repository:
+### Prerequisites
+- Node.js 18+ 
+- PostgreSQL database
+- Clerk account for authentication
+- Google Gemini API key
+
+### Installation
+
+1. **Clone the repository**
 ```bash
 git clone https://github.com/asadali-07/sans-ai.git
 cd sans-ai
 ```
 
-Install dependencies:
+2. **Install dependencies**
 ```bash
-npm run dev
+npm install
 # or
-yarn dev
+yarn install
 # or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. **Set up environment variables**
+Create a `.env.local` file in the root directory:
+```env
+# Database
+DATABASE_URL="your_postgresql_connection_string"
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Google Gemini AI
+GOOGLE_GEMINI_API_KEY=your_gemini_api_key
 
-## Learn More
+# Inngest
+INNGEST_EVENT_KEY=your_inngest_event_key
+INNGEST_SIGNING_KEY=your_inngest_signing_key
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Set up the database**
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. **Run the development server**
+```bash
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📁 Project Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+sans-ai/
+├── app/                    # Next.js App Router
+│   ├── (auth)/            # Authentication pages
+│   ├── (main)/            # Protected main application
+│   │   ├── dashboard/     # User dashboard
+│   │   ├── resume/        # Resume builder
+│   │   ├── ai-cover-letter/ # Cover letter generator
+│   │   ├── interview/     # Interview preparation
+│   │   └── onboarding/    # User onboarding
+│   └── api/               # API routes
+├── components/            # Reusable UI components
+│   └── ui/               # ShadCN UI components
+├── actions/              # Server actions
+├── lib/                  # Utility functions
+├── hooks/                # Custom React hooks
+├── data/                 # Static data and constants
+├── prisma/               # Database schema and migrations
+└── public/               # Static assets
+```
+
+---
+
+## 🎯 Key Features Breakdown
+
+### **Dashboard**
+- Overview of career progress
+- Quick access to all tools
+- Recent activity and insights
+- Goal tracking and achievements
+
+### **Resume Builder**
+- AI-powered content generation
+- Multiple professional templates
+- Real-time editing and preview
+- Export to PDF format
+- Skills and experience management
+
+### **Cover Letter Generator**
+- Job-specific customization
+- AI-powered content suggestions
+- Template library
+- Company and role targeting
+
+### **Interview Preparation**
+- Mock interview sessions
+- Question bank by industry
+- Performance analytics
+- Improvement recommendations
+- Progress tracking
+
+### **Industry Insights**
+- Weekly market trends
+- Career advice and tips
+- Industry-specific updates
+- Personalized recommendations
+
+---
+
+## 🔧 Available Scripts
+
+```bash
+npm run dev          # Start development server with Turbopack
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Run ESLint
+npm run postinstall  # Generate Prisma client
+```
+
+---
+
+## 🌐 Deployment
+
+The application is optimized for deployment on **Vercel**:
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Configure environment variables
+4. Deploy automatically
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/asadali-07/sans-ai)
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Asad Ali**
+- GitHub: [@asadali-07](https://github.com/asadali-07)
+- Project: [Sans-Ai](https://github.com/asadali-07/sans-ai)
+
+---
+
+## 🙏 Acknowledgments
+
+- [Next.js](https://nextjs.org/) for the amazing React framework
+- [Clerk](https://clerk.com/) for seamless authentication
+- [ShadCN UI](https://ui.shadcn.com/) for beautiful components
+- [Google Gemini](https://gemini.google.com/) for AI capabilities
+- [Vercel](https://vercel.com/) for hosting and deployment
