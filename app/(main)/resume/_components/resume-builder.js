@@ -125,6 +125,7 @@ export default function ResumeBuilder({ initialContent }) {
       };
 
       await html2pdf().set(opt).from(element).save();
+      toast.success("PDF generated successfully!");
     } catch (error) {
       console.error("PDF generation error:", error);
     } finally {
@@ -139,8 +140,9 @@ export default function ResumeBuilder({ initialContent }) {
         .replace(/\n\s*\n/g, "\n\n") // Normalize multiple newlines to double newlines
         .trim();
 
-      console.log(previewContent, formattedContent);
+      // console.log(previewContent, formattedContent);
       await saveResumeFn(previewContent);
+      setResumeMode("preview");
     } catch (error) {
       console.error("Save error:", error);
     }
@@ -155,7 +157,7 @@ export default function ResumeBuilder({ initialContent }) {
         <div className="space-x-2">
           <Button
             variant="destructive"
-            onClick={handleSubmit(onSubmit)}
+            onClick={onSubmit}
             disabled={isSaving}
           >
             {isSaving ? (
@@ -197,7 +199,7 @@ export default function ResumeBuilder({ initialContent }) {
             {/* Contact Information */}
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Contact Information</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border rounded-lg bg-muted/50">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 border rounded-lg ">
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Email</label>
                   <Input

@@ -35,7 +35,7 @@ const Header = async() => {
                   <span className="hidden md:block">Industry Insights</span>
                 </Button>
               </Link>
-            <DropdownMenu>
+            <DropdownMenu autoCloseDelay={2000}>
               <DropdownMenuTrigger asChild>
               <Button>
                   <StarIcon className="h-6 w-6" />
