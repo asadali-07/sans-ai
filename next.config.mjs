@@ -1,13 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig ={
-    images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'randomuser.me',
-        },
-      ],
-    },
-  }
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "randomuser.me",
+        port: "",
+        pathname: "/api/portraits/**", // allow all portraits
+      },
+    ],
+  },
+};
 
 export default nextConfig;

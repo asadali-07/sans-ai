@@ -130,13 +130,21 @@ export default function Quiz() {
       <CardContent className="space-y-4">
         <p className="text-lg font-medium">{question.question}</p>
         <RadioGroup
-          onValueChange={handleAnswer}
+          onValueChange={(value) => {
+            if (!answers[currentQuestion]) {
+              handleAnswer(value);
+            }
+          }}
           value={answers[currentQuestion]}
           className="space-y-2"
         >
           {question.options.map((option, index) => (
             <div key={index} className="flex items-center space-x-2">
-              <RadioGroupItem value={option} id={`option-${index}`} />
+              <RadioGroupItem
+                value={option}
+                id={`option-${index}`}
+                disabled={!!answers[currentQuestion]} // disable if already answered
+              />
               <Label htmlFor={`option-${index}`}>{option}</Label>
             </div>
           ))}
